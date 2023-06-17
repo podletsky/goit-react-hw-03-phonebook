@@ -6,9 +6,9 @@ const ContactList = ({ contacts, deleteContact }) => {
     <div>
       <div className={styles.list}>
         {contacts.map(contact => (
-          <div>
+          <div key={contact.id}>
             {' '}
-            <div key={contact.id} className={styles.item}>
+            <div className={styles.item}>
               <p className={styles.text}>
                 {contact.name}: {contact.number}
               </p>

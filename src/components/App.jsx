@@ -13,11 +13,21 @@ class App extends Component {
       filter: '',
     };
   }
+  componentDidMount() {
+    const savedContacts = localStorage.getItem('contacts');
+    if (savedContacts) {
+      this.setState({ contacts: JSON.parse(savedContacts) });
+    }
+  }
 
-  addContact = contactc => {
+  componentDidUpdate() {
+    localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  }
+
+  addContact = contact => {
     const newContact = {
       id: nanoid(),
-      ...contactc,
+      ...contact,
     };
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
@@ -51,6 +61,9 @@ class App extends Component {
         <Filter filter={filter} handleFilterChange={this.handleFilterChange} />
         <ContactList
           contacts={this.getVisibleContacts()}
+          // contacts={contacts}
+
+          handleInputChange={this.handleInputChange}
           deleteContact={this.handleDelete}
         />
       </div>
