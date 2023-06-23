@@ -6,13 +6,11 @@ import Filter from './filter/Filter';
 import styles from './contactList/ContactList.module.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      contacts: [],
-      filter: '',
-    };
-  }
+  state = {
+    contacts: [],
+    filter: '',
+  };
+
   componentDidMount() {
     const savedContacts = localStorage.getItem('contacts');
     if (savedContacts) {
